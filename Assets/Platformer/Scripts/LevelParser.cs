@@ -37,8 +37,8 @@ public class LevelParser : MonoBehaviour
     [Header("Prefabs")]
     public GameObject rockPrefab;
     public GameObject brickPrefab;
-    public GameObject questionBoxPrefab;
-    public GameObject strongPrefab;
+    public GameObject goldPrefab;
+    public GameObject stonePrefab;
 
     void Start()
     {
@@ -73,7 +73,12 @@ public class LevelParser : MonoBehaviour
                 // Todo - Instantiate a new GameObject that matches the type specified by the character
                 // Todo - Position the new GameObject at the appropriate location by using row and column
                 // Todo - Parent the new GameObject under levelRoot
-
+                if (currentChar == 'x')
+                {
+                    Vector3 newPosition = new Vector3(columnIndex + 0.5f, row + 0.5f, 0);
+                    Transform rockInstance = Instantiate(rockPrefab,levelRoot).transform;
+                    rockInstance.position = newPosition;
+                }
             }
 
             row++;
