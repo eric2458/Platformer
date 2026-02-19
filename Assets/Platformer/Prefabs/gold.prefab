@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 2602494062411076579}
   - component: {fileID: 6189102770220256713}
   - component: {fileID: 7701017921037879308}
+  - component: {fileID: 866032089642382863}
   m_Layer: 0
   m_Name: gold
-  m_TagString: Untagged
+  m_TagString: Question
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5d17d8e2ff5e04daea79f2cbf84160f4, type: 2}
+  - {fileID: 2100000, guid: 47191cd7293234cbfa0a2c91d2e92dc9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,3 +113,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &866032089642382863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6218262560680755152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b41b97db04c15423da622da5653ee6ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestionTileOffset
+  tilesX: 4
+  tilesY: 4
+  tileColumn: 0
+  tileRow: 0
