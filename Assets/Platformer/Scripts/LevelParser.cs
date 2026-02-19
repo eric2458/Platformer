@@ -9,10 +9,11 @@ public class LevelParser : MonoBehaviour
     public Transform levelRoot;
 
     [Header("Prefabs")]
-    public GameObject rockPrefab;   // 'x'
-    public GameObject brickPrefab;  // 'b'
-    public GameObject goldPrefab;   // '?'
-    public GameObject stonePrefab;  // 's'
+    public GameObject rockPrefab;
+
+    public GameObject brickPrefab;
+    public GameObject goldPrefab;
+    public GameObject stonePrefab;
 
     void Start()
     {
@@ -38,8 +39,7 @@ public class LevelParser : MonoBehaviour
             Debug.LogError("LevelParser: levelRoot is not assigned.");
             return;
         }
-
-        // Push lines onto a stack so we can pop bottom-up rows
+        
         Stack<string> levelRows = new Stack<string>();
 
         foreach (string line in levelFile.text.Split('\n'))
@@ -50,8 +50,7 @@ public class LevelParser : MonoBehaviour
         while (levelRows.Count > 0)
         {
             string rowString = levelRows.Pop();
-
-            // If the row is empty, just move to the next row
+            
             if (string.IsNullOrWhiteSpace(rowString))
             {
                 row++;
@@ -66,8 +65,7 @@ public class LevelParser : MonoBehaviour
 
                 // Ignore Windows carriage returns
                 if (currentChar == '\r') continue;
-
-                // Ignore spaces (your level file uses lots of spacing)
+                
                 if (currentChar == ' ') continue;
 
                 GameObject prefabToSpawn = null;
@@ -83,23 +81,20 @@ public class LevelParser : MonoBehaviour
                         break;
 
                     case '?':
-                        prefabToSpawn = goldPrefab;   // your ? block prefab
+                        prefabToSpawn = goldPrefab;
                         break;
 
                     case 's':
                         prefabToSpawn = stonePrefab;
                         break;
-
-                    // If you use '.' or something for empty, add it here:
-                    // case '.':
+                    
                     default:
                         prefabToSpawn = null;
                         break;
                 }
 
                 if (prefabToSpawn == null) continue;
-
-                // Same positioning you already used (centered in a 1x1 grid cell)
+                
                 Vector3 newPosition = new Vector3(columnIndex + 0.5f, row + 0.5f, 0f);
 
                 Transform instance = Instantiate(prefabToSpawn, levelRoot).transform;
