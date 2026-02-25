@@ -5,7 +5,7 @@ public class TimeController : MonoBehaviour
 {
     public TextMeshProUGUI timeText;
 
-    float timeLeft = 500;
+    float timeLeft = 100;
     void Start()
     {
         

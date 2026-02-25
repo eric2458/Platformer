@@ -2,25 +2,37 @@ using UnityEngine;
 
 public class QuestionTileOffset : MonoBehaviour
 {
-    public int tilesX = 4;
-    public int tilesY = 4;
+    public Material questionMaterial; 
+    public float cycleTime = 0.5f; 
+    public int shadeCount = 5; 
 
-    public int tileColumn = 0;
-    public int tileRow = 0;
+    private int currentIndex = 0;
+    private float timer = 0f;
 
     void Start()
     {
-        Renderer r = GetComponent<Renderer>();
-        Material mat = r.material;
+        SetShade(0);
+    }
 
-        Vector2 scale = new Vector2(1f / tilesX, 1f / tilesY);
-        mat.mainTextureScale = scale;
-        
-        float flippedRow = (tilesY - 1 - tileRow);
+    void Update()
+    {
+        if (questionMaterial == null || shadeCount < 2) return;
+        timer += Time.deltaTime;
+        if (timer >= cycleTime)
+        {
+            timer = 0f;
+            currentIndex = (currentIndex + 1) % shadeCount;
+            SetShade(currentIndex);
+        }
+    }
 
-        Vector2 offset = new Vector2(tileColumn * scale.x,
-            flippedRow * scale.y);
-
-        mat.mainTextureOffset = offset;
+    void SetShade(int index)
+    {
+    
+        float sliceHeight = 1f / shadeCount;
+        Vector2 offset = new Vector2(1f, 1f - sliceHeight * (index + 1));
+        Vector2 scale = new Vector2(-1, -sliceHeight);
+        questionMaterial.mainTextureOffset = offset;
+        questionMaterial.mainTextureScale = scale;
     }
 }
