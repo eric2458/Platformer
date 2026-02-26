@@ -26,8 +26,8 @@ public class ClickRaycaster : MonoBehaviour
 
             }
             else if (hit.collider.CompareTag("Question"))
-            {
-
+            { 
+				Destroy(hit.collider.gameObject);
             }
         }
     }
